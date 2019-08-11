@@ -2,22 +2,22 @@ import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
-public class book implements Serializable {
+public class Book implements Serializable { // changed book to Book - Amel
 	
-	private String TITLE;
-	private String AUTHOR;
-	private String CALLNO;
-	private int ID;
+	private String title;  //changed TITLE to title - Amel
+	private String author; //changed AUTHOR to author - Amel
+	private String callNo; //changed CALLNO to callNo - Amel
+	private int id; //changed ID to id - Amel
 	
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
 	private STATE State;
 	
 	
 	public book(String author, String title, String callNo, int id) {
-		this.AUTHOR = author;
-		this.TITLE = title;
-		this.CALLNO = callNo;
-		this.ID = id;
+		this.author = author; //changed AUTHOR to author - Amel
+		this.title = title; //changed TITLE to title - Amel
+		this.callNo = callNo; //changed CALLNO to callNo - Amel
+		this.id = id; //changed ID to id - Amel
 		this.State = STATE.AVAILABLE;
 	}
 	
