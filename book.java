@@ -17,7 +17,7 @@ public class Book implements Serializable { // changed book to Book - Amel
 		this.author = author; //changed AUTHOR to author - Amel
 		this.title = title; //changed TITLE to title - Amel
 		this.callNo = callNo; //changed CALLNO to callNo - Amel
-		this.id = id; //changed ID to id - Amel
+		this.id = id;  //changed ID to id - Amel
 		this.State = STATE.AVAILABLE;
 	}
 	
