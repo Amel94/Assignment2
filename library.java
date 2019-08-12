@@ -98,12 +98,12 @@ public class library implements Serializable {
 	}
 
 	
-	private int NextMID() { // changed the NextMID to NextMid -Amel
+	private int nextMid() { // changed the NextMID to nextMid -Amel
 		return MEMBER_ID++; // changed the MEMBER_ID to memberId -Amel
 	}
 
 	
-	private int NextLID() { // changed the NextMID to NextMid -Amel
+	private int nextLid() { // changed the NextLID to nextLid -Amel
 		return LoanId++; // changed the LOAN_ID to LoanId -Amel
 	}
 
@@ -123,40 +123,40 @@ public class library implements Serializable {
 	}
 
 
-	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
+	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {	 // changed the Add_mem to addMem -Amel	
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
 		MEMBERS.put(member.GeT_ID(), member);		
 		return member;
 	} 
 
 	
-	public book Add_book(String a, String t, String c) {		
+	public book Add_book(String a, String t, String c) {	// changed the Add_book to addBook -Amel	
 		book b = new book(a, t, c, NextBID());
 		CATALOG.put(b.ID(), b);		
 		return b;
 	}
 
 	
-	public member MEMBER(int memberId) {
+	public member MEMBER(int memberId) { // changed the MEMBER to member -Amel
 		if (MEMBERS.containsKey(memberId)) 
 			return MEMBERS.get(memberId);
 		return null;
 	}
 
 	
-	public book Book(int bookId) {
+	public book Book(int bookId) { // changed the Book to book -Amel
 		if (CATALOG.containsKey(bookId)) 
 			return CATALOG.get(bookId);		
 		return null;
 	}
 
-	
-	public int LOAN_LIMIT() {
+	 
+	public int loanLimit() { // changed the LOAN_LIMIT to loanLimit -Amel
 		return loanLimit;
 	}
 
 	
-	public boolean MEMBER_CAN_BORROW(member member) {		
+	public boolean memberCanBorrow(member member) {	 // changed the MEMBER_CAN_BORROW to memberCanBorrow -Amel	
 		if (member.Number_Of_Current_Loans() == loanLimit ) 
 			return false;
 				
@@ -171,12 +171,12 @@ public class library implements Serializable {
 	}
 
 	
-	public int Loans_Remaining_For_Member(member member) {		
+	public int loansRemainingForMember(member member) {		 // changed the Loans_Remaining_For_Member to loansRemainingForMember -Amel
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 
 	
-	public loan ISSUE_LAON(book book, member member) {
+	public loan issueLaon(book book, member member) { // changed the ISSUE_LAON to issueLaon -Amel
 		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
@@ -187,7 +187,7 @@ public class library implements Serializable {
 	}
 	
 	
-	public loan LOAN_BY_BOOK_ID(int bookId) {
+	public loan LOAN_BY_BOOK_ID(int bookId) { // changed the LOAN_BY_BOOK_ID to loanByBookId -Amel
 		if (CURRENT_LOANS.containsKey(bookId)) {
 			return CURRENT_LOANS.get(bookId);
 		}
@@ -195,7 +195,7 @@ public class library implements Serializable {
 	}
 
 	
-	public double CalculateOverDueFine(loan loan) {
+	public double calculateOverDueFine(loan loan) { // changed the CalculateOverDueFine to calculateOverDueFine -Amel
 		if (loan.OVer_Due()) {
 			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
 			double fine = daysOverDue * finePerDay;
@@ -205,14 +205,14 @@ public class library implements Serializable {
 	}
 
 
-	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
+	public void dischargeLoan(loan currentLoan, boolean isDamaged) { // changed the Discharge_loan to dischargeLoan -Amel
 		member member = currentLoan.Member();
 		book book  = currentLoan.Book();
 		
 		double overDueFine = CalculateOverDueFine(currentLoan);
 		member.Add_Fine(overDueFine);	
 		
-		member.dIsChArGeLoAn(currentLoan);
+		member.dischargeLoan(currentLoan); // changed the dIsChArGeLoAn to dischargeLoan -Amel
 		book.Return(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(damageFee);
@@ -230,7 +230,7 @@ public class library implements Serializable {
 	}
 
 
-	public void Repair_BOOK(book currentBook) {
+	public void Repair_BOOK(book currentBook) { // changed the Repair_BOOK to repairBooK -Amel
 		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
 			currentBook.Repair();
 			DAMAGED_BOOKS.remove(currentBook.ID());
