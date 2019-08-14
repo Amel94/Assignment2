@@ -29,7 +29,7 @@ public class BorrowBookUI {
 	}
 	
 			
-	public void Set_State(UI_STATE STATE) {
+	public void setState(UI_STATE STATE) { // changed Set_State to setState - nisal
 		this.StaTe = STATE;
 	}
 
@@ -53,8 +53,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int Member_ID = Integer.valueOf(MEM_STR).intValue();
-					CONTROL.Swiped(Member_ID);
+					int memberId = Integer.valueOf(MEM_STR).intValue(); // changed Member_ID to memberId - nisal
+					CONTROL.Swiped(memberId);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -109,7 +109,7 @@ public class BorrowBookUI {
 	}
 
 
-	public void Display(Object object) {
+	public void display(Object object) { // changed Display to display - nisal
 		output(object);		
 	}
 

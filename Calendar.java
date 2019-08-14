@@ -3,11 +3,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Calendar {
 	
-	private static Calendar SeLf;
+	private static Calendar SeLf; 
 	private static java.util.Calendar CaLeNdAr;
 	
 	
-	private Calendar() {
+	private Calendar() { 
 		CaLeNdAr = java.util.Calendar.getInstance();
 	}
 	
@@ -55,7 +55,7 @@ public class Calendar {
 		return DuEdAtE;
 	}
 	
-	public synchronized long Get_Days_Difference(Date targetDate) {
+	public synchronized long Get_Days_Difference(Date targetDate) { 
 		
 		long Diff_Millis = Date().getTime() - targetDate.getTime();
 	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);

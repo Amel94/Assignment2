@@ -31,7 +31,7 @@ public class BorrowBookControl {
 	}
 
 		
-	public void Swiped(int MEMMER_ID) {
+	public void swiped(int MEMMER_ID) { // changed Swiped to swipe - nisal
 		if (!State.equals(CONTROL_STATE.READY)) 
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 			
@@ -50,7 +50,7 @@ public class BorrowBookControl {
 			UI.Set_State(BorrowBookUI.UI_STATE.RESTRICTED); }}
 	
 	
-	public void Scanned(int bookId) {
+	public void scanned(int bookId) { // changes Scanned to scanned - nisal
 		BOOK = null;
 		if (!State.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
@@ -75,7 +75,7 @@ public class BorrowBookControl {
 	}
 	
 	
-	public void Complete() {
+	public void complete() { // changed Complete to complete - nisal
 		if (PENDING.size() == 0) {
 			cancel();
 		}
@@ -91,7 +91,7 @@ public class BorrowBookControl {
 	}
 
 
-	public void Commit_LOans() {
+	public void commitLoans() { // changed Commit_LOans to commitLoans - nisal
 		if (!State.equals(CONTROL_STATE.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}	
