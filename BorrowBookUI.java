@@ -7,13 +7,13 @@ public class BorrowBookUI {
 
 	private BorrowBookControl CONTROL;
 	private Scanner input;
-	private UI_STATE StaTe;
+	private UI_STATE state; // changed Set_State to state - nisal
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
 		this.CONTROL = control;
 		input = new Scanner(System.in);
-		StaTe = UI_STATE.INITIALISED;
+		state = UI_STATE.INITIALISED;  // changed Set_State to state - nisal
 		control.setUI(this);
 	}
 
@@ -75,8 +75,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(Book_Str).intValue();
-					CONTROL.Scanned(BiD);
+					int bId = Integer.valueOf(Book_Str).intValue();  // changed BiD to bId - nisal
+					CONTROL.Scanned(bId); // changed BiD to bId - nisal
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
