@@ -7,7 +7,7 @@ public class ReturnBookUI {
 
 	private ReturnBookControl control; // changed CoNtRoL to control - Amel
 	private Scanner input;
-	private UI_STATE StATe; // changed StATe to state - Amel
+	private UI_STATE state; // changed StATe to state - Amel
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
@@ -18,7 +18,7 @@ public class ReturnBookUI {
 	}
 
 
-	public void RuN() {// changed RuN to run - Amel	 	
+	public void run() {// changed RuN to run - Amel	 	
 		output("Return Book Use Case UI\n");
 		
 		while (true) {
