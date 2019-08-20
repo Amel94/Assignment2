@@ -29,7 +29,7 @@ public class FixBookControl {
 		if (!state.equals(controlState.READY)) {// changing the variable names StAtE to state and CONTROL_STATE to controlState
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}	
-		curBook = LIB.Book(bookId);// variable name changed Cur_Book to curBook
+		curBook = lib.Book(bookId);// variable name changed Cur_Book to curBook and LIB to lib
 		
 		if (curBook == null) {// variable name changed Cur_Book to curBook
 			ui.display("Invalid bookId"); // variable name changed UI to ui
@@ -45,7 +45,7 @@ public class FixBookControl {
 	}
 
 
-	public void fixBook(boolean mustFix) { // method name changed fixBook to fixBook // variable name changed MUST_fix to mustFix
+	public void fixBook(boolean mustFix) { // method name changed fix_Book to fixBook and variable name changed MUST_fix to mustFix
 		if (!state.equals(controlState.FIXING)) {// changing the variable names StAtE to state and CONTROL_STATE to controlState
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}	

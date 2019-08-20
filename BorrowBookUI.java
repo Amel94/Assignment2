@@ -7,13 +7,13 @@ public class BorrowBookUI {
 
 	private BorrowBookControl CONTROL;
 	private Scanner input;
-	private UI_STATE StaTe;
+	private UI_STATE state; // changed Set_State to state - nisal
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
 		this.CONTROL = control;
 		input = new Scanner(System.in);
-		StaTe = UI_STATE.INITIALISED;
+		state = UI_STATE.INITIALISED;  // changed Set_State to state - nisal
 		control.setUI(this);
 	}
 
@@ -29,7 +29,7 @@ public class BorrowBookUI {
 	}
 	
 			
-	public void Set_State(UI_STATE STATE) {
+	public void setState(UI_STATE STATE) { // changed Set_State to setState - nisal
 		this.StaTe = STATE;
 	}
 
@@ -53,8 +53,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int Member_ID = Integer.valueOf(MEM_STR).intValue();
-					CONTROL.Swiped(Member_ID);
+					int memberId = Integer.valueOf(MEM_STR).intValue(); // changed Member_ID to memberId - nisal
+					CONTROL.Swiped(memberId);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -75,8 +75,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(Book_Str).intValue();
-					CONTROL.Scanned(BiD);
+					int bId = Integer.valueOf(Book_Str).intValue();  // changed BiD to bId - nisal
+					CONTROL.Scanned(bId); // changed BiD to bId - nisal
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -90,7 +90,7 @@ public class BorrowBookUI {
 					CONTROL.cancel();
 					
 				} else {
-					CONTROL.Commit_LOans();
+					CONTROL.commitLoans();  // changed Commit_LOans to commitLoans - nisal
 					input("Press <any key> to complete ");
 				}
 				break;
@@ -109,7 +109,7 @@ public class BorrowBookUI {
 	}
 
 
-	public void Display(Object object) {
+	public void display(Object object) { // changed Display to display - nisal
 		output(object);		
 	}
 
