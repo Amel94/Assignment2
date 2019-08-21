@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Scanner in;// variable name changes IN to in
+	private static library lib;  // variable name changes LIB to lib
+	private static String menu; // variable name changes MENU to menu
+	private static Calendar cal; // variable name changes CAL to cal
+	private static SimpleDateFormat sdf; // variable name changes SDF to sdf
 	
 	
 	private static String Get_menu() {
@@ -39,27 +39,27 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+			in = new Scanner(System.in); // variable name changes IN to in
+			lib = library.INSTANCE(); // variable name changes LIB to lib
+			cal = Calendar.INSTANCE(); // variable name changes CAL to cal
+			sdf = new SimpleDateFormat("dd/MM/yyyy"); // variable name changes SDF to sdf
 	
-			for (member m : LIB.MEMBERS()) {
+			for (member m : lib.MEMBERS()) { // variable name changes LIB to lib
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
+			for (book b : lib.BOOKS()) { // variable name changes LIB to lib
 				output(b);
 			}
 						
-			MENU = Get_menu();
+			menu = Get_menu();  // variable name changes MENU to menu
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
-				String c = input(MENU);
+				output("\n" + sdf.format(CAL.Date())); // variable name changes SDF to sdf
+				String c = input(menu); // variable name changes MENU to menu
 				
 				switch (c.toUpperCase()) {
 				
@@ -120,7 +120,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void FINES() {
+	
+	private static void FINES() {
 		new PayFineUI(new PayFineControl()).RuN();		
 	}
 
