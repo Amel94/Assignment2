@@ -1,3 +1,4 @@
+// author Manusha Anjaana
 import java.util.Scanner;
 
 
@@ -5,21 +6,21 @@ public class FixBookUI {
 
 	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
 
-	private FixBookControl CoNtRoL;
+	private FixBookControl control; // variable name changed to CoNtRoL to control
 	private Scanner input;
-	private UI_STATE StAtE;
+	private UI_STATE state; // variable name changed StAtE to state
 
 	
 	public FixBookUI(FixBookControl control) {
-		this.CoNtRoL = control;
+		this.control = control; // variable name changed to CoNtRoL to control
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
+		state = UI_STATE.INITIALISED; // variable name changed to CoNtRoL to control
 		control.Set_Ui(this);
 	}
 
 
 	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+		this.state = state;  // variable name changed StAtE to state
 	}
 
 	
@@ -28,17 +29,17 @@ public class FixBookUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {  // variable name changed StAtE to state
 			
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.SCannING_COMplete();
+				String bookstr = input("Scan Book (<enter> completes): "); // variable name changed  Book_STR to bookstr
+				if (bookstr.length() == 0) {  // variable name changed  Book_STR to bookstr
+					control.SCannING_COMplete();// variable name changed to CoNtRoL to control
 				}
 				else {
 					try {
-						int Book_ID = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_ID);
+						int bookId = Integer.valueOf(bookstr).intValue(); // variable name changed  Book_ID to bookId
+						control.Book_scanned(bookId); // variable name changed to CoNtRoL to control and Book_ID to bookId
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -47,12 +48,12 @@ public class FixBookUI {
 				break;	
 				
 			case FIXING:
-				String AnS = input("Fix Book? (Y/N) : ");
-				boolean FiX = false;
-				if (AnS.toUpperCase().equals("Y")) {
-					FiX = true;
+				String ans = input("Fix Book? (Y/N) : "); // variable name changed to AnS to ans
+				boolean fix = false; // variable name changes FiX to fix
+				if (ans.toUpperCase().equals("Y")) { // variable name changed to AnS to ans
+					fix = true;// variable name changes FiX to fix
 				}
-				CoNtRoL.FIX_Book(FiX);
+				control.FIX_Book(fix);  // variable name changes FiX to fix  and CoNtRoL to control
 				break;
 								
 			case COMPLETED:
@@ -61,7 +62,7 @@ public class FixBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);  // variable name changed StAtE to state	
 			
 			}		
 		}
