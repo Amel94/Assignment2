@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Main {
 	
 	private static Scanner in;// variable name changes IN to in
-	private static library lib;  // variable name changes LIB to lib
+	private static library library;  // variable name changes LIB to library
 	private static String menu; // variable name changes MENU to menu
-	private static Calendar cal; // variable name changes CAL to cal
+	private static Calendar calender; // variable name changes CAL to calender
 	private static SimpleDateFormat sdf; // variable name changes SDF to sdf
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() { // method name changes Get_menu to getMenu()
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -40,67 +40,67 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			in = new Scanner(System.in); // variable name changes IN to in
-			lib = library.INSTANCE(); // variable name changes LIB to lib
-			cal = Calendar.INSTANCE(); // variable name changes CAL to cal
+			library = library.INSTANCE(); // variable name changes LIB to library
+			calender = calendar.INSTANCE(); // variable name changes CAL, Calender to calender
 			sdf = new SimpleDateFormat("dd/MM/yyyy"); // variable name changes SDF to sdf
 	
-			for (member m : lib.MEMBERS()) { // variable name changes LIB to lib
+			for (member m : library.getMembers()) { // variable name changes LIB to lib and method name MEMBERS to getMembers()
 				output(m);
 			}
 			output(" ");
-			for (book b : lib.BOOKS()) { // variable name changes LIB to lib
+			for (book b : lib.outputBook()) { // variable name changes LIB to lib , method name BOOKS to outputBook()
 				output(b);
 			}
 						
-			menu = Get_menu();  // variable name changes MENU to menu
+			menu = getMenu();  // variable name changes MENU to menu and method name Get_Menu() to getMenu()
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + sdf.format(CAL.Date())); // variable name changes SDF to sdf
+				output("\n" + sdf.format(cal.date())); // variable name changes SDF to sdf , CAL to cal and method Date to date()
 				String c = input(menu); // variable name changes MENU to menu
 				
 				switch (c.toUpperCase()) {
 				
 				case "M": 
-					ADD_MEMBER();
+					addMember(); // method name changes ADD_MEMBER to addMember()
 					break;
 					
 				case "LM": 
-					MEMBERS();
+					getMember(); // method name changes MEMBERS to getMember()
 					break;
 					
 				case "B": 
-					ADD_BOOK();
+					addBook();// method name changes ADD_BOOK to addBook()
 					break;
 					
 				case "LB": 
-					BOOKS();
+					outputBook();// method name changes BOOKS to outputBook()
 					break;
 					
 				case "FB": 
-					FIX_BOOKS();
+					fixBooks();// method name changes FIX_BOOKS to fixBooks()
 					break;
 					
 				case "L": 
-					BORROW_BOOK();
+					borrowBook();// method name changes BORROW_BOOK to borrowBook()
 					break;
 					
 				case "R": 
-					RETURN_BOOK();
+					returnBook(); // method name changes RETURN_BOOK to returnBook()
 					break;
 					
 				case "LL": 
-					CURRENT_LOANS();
+					currentLoan();//  method name changes CURRENT_LOANS to currentLoan()
 					break;
 					
 				case "P": 
-					FINES();
+					fines(); // method name changes FINES to fines
 					break;
 					
 				case "T": 
-					INCREMENT_DATE();
+					incrementDate(); // method name chenage INCREMENT_DATE() to incrementDate()
 					break;
 					
 				case "Q": 
@@ -112,7 +112,7 @@ public class Main {
 					break;
 				}
 				
-				library.SAVE();
+				library.save(); // method name changes SAVE() to save()
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -121,59 +121,59 @@ public class Main {
 	}	
 
 	
-	private static void FINES() {
-		new PayFineUI(new PayFineControl()).RuN();		
+	private static void fines() { // method name chenages Fines() to fines()
+		new PayFineUI(new payFineControl()).run(); // method name changes RuN() to run() , PayFineControl to payFineControl()
 	}
 
 
-	private static void CURRENT_LOANS() {
+	private static void currentLoan() { // method name changes CURRENT_LOANS to currentLoan()
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		for (loan loan : library.currentLoan()) {// method name changes CURRENT_LOANS to currentLoan() , variable name LIB to library
 			output(loan + "\n");
 		}		
 	}
 
 
 
-	private static void BOOKS() {
+	private static void outputBook() {// method name changes BOOKS to outputBook()
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (book book : library.outputBook()) { // method name changes BOOKS to outputBook()
 			output(book + "\n");
 		}		
 	}
 
 
 
-	private static void MEMBERS() {
+	private static void getMember() {// method name changes MEMBERS to getMember()
 		output("");
-		for (member member : LIB.MEMBERS()) {
+		for (member member : library.getMember()) {// variable name LIB to library and MEMBER to getMember()
 			output(member + "\n");
 		}		
 	}
 
 
 
-	private static void BORROW_BOOK() {
-		new BorrowBookUI(new BorrowBookControl()).run();		
+	private static void borrow() { // method name BORROW_BOOK to borrowBook()
+		new BorrowBookUI(new borrowBookControl()()).run();	// method changes BorrowBookControl to borrowBookControl()	
 	}
 
 
-	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+	private static void returnBook() { // method changes RETURN_BOOK to returnBook()
+		new ReturnBookUI(new returnBookControl()).run();	// method name change ReturnBookControl() to returnBookControl(),RuN to run()
 	}
 
 
-	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).RuN();		
+	private static void fixBook() { // method name change FIX_BOOKS to fixBook()
+		new FixBookUI(new fixBookControl()).run();	// method name FixBookControl changes to fixBookControl	,RuN to run()
 	}
 
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() { // method name change INCREMENT_DATE to incrementDate
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			calculator.incrementDate(days); // variable name changes CAL to calculator
+			library.checkCurrentLoans(); // variable name changes LIB to library
+			output(sdf.format(cal.date())); // variable name changes SDF to sdf , CAL to cal , method changes Date() to date()
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -181,24 +181,24 @@ public class Main {
 	}
 
 
-	private static void ADD_BOOK() {
+	private static void addBook() { // method name changes ADD_BOOK to addBook()
 		
-		String A = input("Enter author: ");
-		String T  = input("Enter title: ");
-		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
+		String author = input("Enter author: "); // varaible change A to author
+		String title = input("Enter title: "); // variable changes T to title
+		String callNumber = input("Enter call number: "); // variable name change C to callNumber
+		book B = lib.addBook(author, title, callNumber); //variable  LIB changes to library,A to author,T to title,C to callNumber , method changes Add_book to addBook()
 		output("\n" + B + "\n");
 		
 	}
 
 	
-	private static void ADD_MEMBER() {
+	private static void addMember() { // method name changes ADD_MEMBER to addMember()
 		try {
-			String LN = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
-			String EM = input("Enter email: ");
-			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			String lastName = input("Enter last name: "); // variable name changes LN to lastName
+			String firstName  = input("Enter first name: "); // variable name changes FN to firstName
+			String email = input("Enter email: "); // varible name changes EM to email
+			int phoneNumber = Integer.valueOf(input("Enter phone number: ")).intValue(); // variable name changes PN to phoneNumber
+			member M = library.Add_mem( lastName, firstName, email, phoneNumber); // variable name changes LIB library , LN to lastName, FN to firstName,EM to email
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
@@ -210,7 +210,7 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		return in.nextLine();// variable IN changes to in
 	}
 	
 	
