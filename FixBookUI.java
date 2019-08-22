@@ -15,16 +15,16 @@ public class FixBookUI {
 		this.control = control; // variable name changed to CoNtRoL to control
 		input = new Scanner(System.in);
 		state = UI_STATE.INITIALISED; // variable name changed to CoNtRoL to control
-		control.Set_Ui(this);
+		control.setUserInterface(this);// method name changed Set_Ui to setUserInterface
 	}
 
 
-	public void Set_State(UI_STATE state) {
+	public void setState(UI_STATE state) { // method name changed Set_State to setState
 		this.state = state;  // variable name changed StAtE to state
 	}
 
 	
-	public void RuN() {
+	public void run() { // method name changed RuN to run
 		output("Fix Book Use Case UI\n");
 		
 		while (true) {
@@ -32,14 +32,14 @@ public class FixBookUI {
 			switch (state) {  // variable name changed StAtE to state
 			
 			case READY:
-				String bookstr = input("Scan Book (<enter> completes): "); // variable name changed  Book_STR to bookstr
-				if (bookstr.length() == 0) {  // variable name changed  Book_STR to bookstr
-					control.SCannING_COMplete();// variable name changed to CoNtRoL to control
+				String bookString = input("Scan Book (<enter> completes): "); // variable name changed  Book_STR to bookString
+				if (bookString.length() == 0) {  // variable name changed  Book_STR to bookString
+					control.scanningComplete();// variable name changed to CoNtRoL to control // method name changed SCannING_COMplete() to scanningComplete()
 				}
 				else {
 					try {
-						int bookId = Integer.valueOf(bookstr).intValue(); // variable name changed  Book_ID to bookId
-						control.Book_scanned(bookId); // variable name changed to CoNtRoL to control and Book_ID to bookId
+						int bookId = Integer.valueOf(bookString).intValue(); // variable name changed  Book_ID to bookId Book_STR to bookString
+						control.bookScanned(bookId); // variable name changed to CoNtRoL to control and Book_ID to bookId  and method name changed Book_scanned to bookScanned()
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -48,12 +48,12 @@ public class FixBookUI {
 				break;	
 				
 			case FIXING:
-				String ans = input("Fix Book? (Y/N) : "); // variable name changed to AnS to ans
+				String answer = input("Fix Book? (Y/N) : "); // variable name changed to AnS to answer
 				boolean fix = false; // variable name changes FiX to fix
-				if (ans.toUpperCase().equals("Y")) { // variable name changed to AnS to ans
+				if (answer.toUpperCase().equals("Y")) { // variable name changed to AnS to answer
 					fix = true;// variable name changes FiX to fix
 				}
-				control.FIX_Book(fix);  // variable name changes FiX to fix  and CoNtRoL to control
+				control.fixBook(fix);  // variable name changes FiX to fix  and CoNtRoL to control method name changes to FIX_Book to fixBook()
 				break;
 								
 			case COMPLETED:
