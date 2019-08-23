@@ -31,7 +31,7 @@ public class loan implements Serializable {
 	}
 
 	
-	public boolean OVer_Due() {
+	public boolean Over_Due() { //Changed OVer_Due to Over_due - pavan
 		return state == LOAN_STATE.OVER_DUE;
 	}
 
@@ -51,7 +51,7 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
+		  .append("  Borrower ").append(M.Get_ID()).append(" : ")//changed GeT to Get-Pavan
 		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
 		  .append("  Book ").append(B.ID()).append(" : " )
 		  .append(B.TITLE()).append("\n")
@@ -71,7 +71,7 @@ public class loan implements Serializable {
 	}
 
 
-	public void DiScHaRgE() {
+	public void Discharge() { //changed DiScHaRgE to Discharge-Pavan
 		state = LOAN_STATE.DISCHARGED;		
 	}
 
