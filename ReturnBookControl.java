@@ -1,16 +1,18 @@
+// auther: Ameesha, Reviewer: Manusha, Mediator: Nisal
+
 public class ReturnBookControl {
 
 	private ReturnBookUI Ui;
-	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
-	private CONTROL_STATE sTaTe;
+	private enum ControlState { INITIALISED, READY, INSPECTING }; //Changed CONTROL_STATE to ControlState
+	private ControlState state; //Changed CONTROL_STATE to ControlState and sTaTe to state
 	
-	private library lIbRaRy;
-	private loan CurrENT_loan;
+	private library library; // Changed lIbRaRy to library
+	private loan CurrENT_loan; // Chnaged CurrENT_loan to current_loan
 	
 
 	public ReturnBookControl() {
-		this.lIbRaRy = lIbRaRy.INSTANCE();
-		sTaTe = CONTROL_STATE.INITIALISED;
+		this.library = library.Instance(); // Changed lIbRaRy to library and lIbRaRy.INSTANCE to library.Instance
+		state = CONTROL_STATE.INITIALISED; // Changed sTaTe to state
 	}
 	
 	
@@ -20,43 +22,49 @@ public class ReturnBookControl {
 		}	
 		this.Ui = ui;
 		ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;		
+		state = CONTROL_STATE.READY; // Changed sTaTe to state		
 	}
 
 
 	public void Book_scanned(int Book_ID) {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(CONTROL_STATE.READY)) // Changed sTaTe.equals to state.equals 
+		{ 
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}	
-		book CUR_book = lIbRaRy.Book(Book_ID);
+		book CurrentBook_book = library.book(book_ID); // Changed lIbRaRy.Book to library.book and Book_ID to book_ID and Changed 'CUR_book' to 'CurrentBook'
 		
-		if (CUR_book == null) {
+		if (CurrentBook == null) // Changed 'CUR_book' to 'CurrentBook'
+		{
 			Ui.display("Invalid Book Id");
 			return;
 		}
-		if (!CUR_book.On_loan()) {
+		if (!CurrentBook_book.On_loan()) // Changed 'CUR_book' to 'CurrentBook' 
+		{
 			Ui.display("Book has not been borrowed");
 			return;
 		}		
-		CurrENT_loan = lIbRaRy.LOAN_BY_BOOK_ID(Book_ID);	
+		current_loan = library.LOAN_BY_BOOK_ID(Book_ID); // Changed 'CurrENT_loan' to 'current_loan' and  'lIbRaRy' to library'	
 		double Over_Due_Fine = 0.0;
-		if (CurrENT_loan.OVer_Due()) {
-			Over_Due_Fine = lIbRaRy.CalculateOverDueFine(CurrENT_loan);
+		if (current_loan.OVer_Due()) // Changed 'CurrENT_loan.OVer_Due' to 'current_loan.OVer_Due' 
+		{
+			Over_Due_Fine = library.CalculateOverDueFine(current_loan); // Changed 'lIbRaRy.CalculateOverDueFine' to 'library.CalculateOverDueFine' and 'CurrENT_loan' to 'current_loan' 
 		}
 		Ui.display("Inspecting");
-		Ui.display(CUR_book.toString());
-		Ui.display(CurrENT_loan.toString());
+		Ui.display(CurrentBook.toString()); // Changed 'CUR_book' to 'CurrentBook'
+		Ui.display(current_loan.toString()); // Changed 'CurrENT_loan.toString' to 'current_loan.toString'
 		
-		if (CurrENT_loan.OVer_Due()) {
+		if (current_loan.over_Due()) // Changed 'CurrENT_loan.OVer_Due' to 'current_loan.over_Due'
+		{
 			Ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 		}
 		Ui.Set_State(ReturnBookUI.UI_STATE.INSPECTING);
-		sTaTe = CONTROL_STATE.INSPECTING;		
+		state = CONTROL_STATE.INSPECTING; // Changed 'sTaTe' to 'state'		
 	}
 
 
 	public void Scanning_Complete() {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(CONTROL_STATE.READY)) // // Changed 'sTaTe.equals' to 'state.equals'	
+		{
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		}	
 		Ui.Set_State(ReturnBookUI.UI_STATE.COMPLETED);		
@@ -64,13 +72,14 @@ public class ReturnBookControl {
 
 
 	public void Discharge_loan(boolean isDamaged) {
-		if (!sTaTe.equals(CONTROL_STATE.INSPECTING)) {
+		if (!state.equals(CONTROL_STATE.INSPECTING)) // Changed 'sTaTe.equals' to 'state.equals'
+		{
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
 		}	
-		lIbRaRy.Discharge_loan(CurrENT_loan, isDamaged);
-		CurrENT_loan = null;
+		lIbRaRy.Discharge_loan(current_loan, isDamaged); // Changed 'CurrENT_loan' to 'current_loan'
+		current_loan = null; // Changed 'CurrENT_loan' to 'current_loan'
 		Ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;				
+		state = CONTROL_STATE.READY; // Changed 'sTaTe' to 'state'				
 	}
 
 

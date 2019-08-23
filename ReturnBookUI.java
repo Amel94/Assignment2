@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum uiState { INITIALISED, READY, INSPECTING, COMPLETED }; // changed UI_STATE to uiState - Amel
 
 	private ReturnBookControl control; // changed CoNtRoL to control - Amel
 	private Scanner input;
-	private UI_STATE state; // changed StATe to state - Amel
+	private uiState state; // changed StATe to state - Amel // changed UI_STATE to uiState - Amel
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.control = control; // changed CoNtRoL to control - Amel
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED; // changed StATe to state - Amel
+		state =  uiState.INITIALISED; // changed StATe to state - Amel. // changed UI_STATE to uiState - Amel
 		control.Set_UI(this);
 	}
 
@@ -29,13 +29,13 @@ public class ReturnBookUI {
 				break;
 				
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
+				String bookStr = input("Scan Book (<enter> completes): "); // changed Book_STR to bookStr - Amel
+				if (bookStr.length() == 0) { // changed Book_STR to bookStr - Amel
 					control.Scanning_Complete(); // changed CoNtRoL to control - Amel
 				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(Book_STR).intValue();
+						int Book_Id = Integer.valueOf(bookStr).intValue(); // changed Book_STR to bookStr - Amel
 						control.Book_scanned(Book_Id); // changed CoNtRoL to control - Amel
 					}
 					catch (NumberFormatException e) {
@@ -79,7 +79,7 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void Set_State(UI_STATE uiState) { // changed state to uiState - Amel
+	public void Set_State(uiState uiState) { // changed state to uiState - Amel // changed UI_STATE to uiState - Amel
 		this.state = uiState; // changed StATe to state - Amel
 	}
 
