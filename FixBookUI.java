@@ -1,3 +1,4 @@
+// author Manusha Anjaana
 import java.util.Scanner;
 
 
@@ -5,40 +6,40 @@ public class FixBookUI {
 
 	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
 
-	private FixBookControl CoNtRoL;
+	private FixBookControl control; // variable name changed to CoNtRoL to control
 	private Scanner input;
-	private UI_STATE StAtE;
+	private UI_STATE state; // variable name changed StAtE to state
 
 	
 	public FixBookUI(FixBookControl control) {
-		this.CoNtRoL = control;
+		this.control = control; // variable name changed to CoNtRoL to control
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
-		control.Set_Ui(this);
+		state = UI_STATE.INITIALISED; // variable name changed to CoNtRoL to control
+		control.setUserInterface(this);// method name changed Set_Ui to setUserInterface
 	}
 
 
-	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+	public void setState(UI_STATE state) { // method name changed Set_State to setState
+		this.state = state;  // variable name changed StAtE to state
 	}
 
 	
-	public void RuN() {
+	public void run() { // method name changed RuN to run
 		output("Fix Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {  // variable name changed StAtE to state
 			
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.SCannING_COMplete();
+				String bookString = input("Scan Book (<enter> completes): "); // variable name changed  Book_STR to bookString
+				if (bookString.length() == 0) {  // variable name changed  Book_STR to bookString
+					control.scanningComplete();// variable name changed to CoNtRoL to control // method name changed SCannING_COMplete() to scanningComplete()
 				}
 				else {
 					try {
-						int Book_ID = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_ID);
+						int bookId = Integer.valueOf(bookString).intValue(); // variable name changed  Book_ID to bookId Book_STR to bookString
+						control.bookScanned(bookId); // variable name changed to CoNtRoL to control and Book_ID to bookId  and method name changed Book_scanned to bookScanned()
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -47,12 +48,12 @@ public class FixBookUI {
 				break;	
 				
 			case FIXING:
-				String AnS = input("Fix Book? (Y/N) : ");
-				boolean FiX = false;
-				if (AnS.toUpperCase().equals("Y")) {
-					FiX = true;
+				String answer = input("Fix Book? (Y/N) : "); // variable name changed to AnS to answer
+				boolean fix = false; // variable name changes FiX to fix
+				if (answer.toUpperCase().equals("Y")) { // variable name changed to AnS to answer
+					fix = true;// variable name changes FiX to fix
 				}
-				CoNtRoL.FIX_Book(FiX);
+				control.fixBook(fix);  // variable name changes FiX to fix  and CoNtRoL to control method name changes to FIX_Book to fixBook()
 				break;
 								
 			case COMPLETED:
@@ -61,7 +62,7 @@ public class FixBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);  // variable name changed StAtE to state	
 			
 			}		
 		}
