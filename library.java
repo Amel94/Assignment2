@@ -137,14 +137,14 @@ public class library implements Serializable {
 	}
 
 	
-	public member MEMBER(int memberId) { // changed the MEMBER to member -Amel
+	public member member(int memberId) { // changed the MEMBER to member -Amel
 		if (MEMBERS.containsKey(memberId)) 
 			return MEMBERS.get(memberId);
 		return null;
 	}
 
 	
-	public book Book(int bookId) { // changed the Book to book -Amel
+	public book book(int bookId) { // changed the Book to book -Amel
 		if (CATALOG.containsKey(bookId)) 
 			return CATALOG.get(bookId);		
 		return null;
@@ -187,7 +187,7 @@ public class library implements Serializable {
 	}
 	
 	
-	public loan LOAN_BY_BOOK_ID(int bookId) { // changed the LOAN_BY_BOOK_ID to loanByBookId -Amel
+	public loan loanByBookId(int bookId) { // changed the LOAN_BY_BOOK_ID to loanByBookId -Amel
 		if (CURRENT_LOANS.containsKey(bookId)) {
 			return CURRENT_LOANS.get(bookId);
 		}

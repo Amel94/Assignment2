@@ -23,27 +23,27 @@ public class Book implements Serializable { // changed book to Book - Amel
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(ID).append("\n")
-		  .append("  Title:  ").append(TITLE).append("\n")
-		  .append("  Author: ").append(AUTHOR).append("\n")
-		  .append("  CallNo: ").append(CALLNO).append("\n")
-		  .append("  State:  ").append(State);
+		sb.append("Book: ").append(id).append("\n")  //changed ID to id - Amel
+		  .append("  Title:  ").append(title).append("\n") //changed TITLE to title - Amel
+		  .append("  Author: ").append(author).append("\n") //changed AUTHOR to author - Amel
+		  .append("  CallNo: ").append(callNo).append("\n") //changed CALLNO to callNo - Amel
+		  .append("  State:  ").append(state); //changed STATE to state - Amel
 		
 		return sb.toString();
 	}
 
-	public Integer ID() {
-		return ID;
+	public Integer id() { //changed ID to id - Amel
+		return id; //changed ID to id - Amel
 	}
 
-	public String TITLE() {
-		return TITLE;
+	public String title() { //changed TITLE to title - Amel
+		return title; //changed TITLE to title - Amel
 	}
 
 
 	
-	public boolean AVAILABLE() {
-		return State == state.AVAILABLE; //changed STATE to state - Amel
+	public boolean available() { /changed AVAILABLE to available - Amel
+		return State == state.available; //changed STATE to state - Amel. AVAILABLE to available - Amel
 	}
 
 	
