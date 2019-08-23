@@ -5,44 +5,44 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class loan implements Serializable {
 	
-	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
+	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED }; //changed LOAN_STATE to loanState - Amel
 	
-	private int ID;
-	private book B;
-	private member M;
-	private Date D;
-	private LOAN_STATE state;
+	private int id; //changed ID to id - Amel
+	private book b; //changed B to b - Amel
+	private member m; //changed M to m - Amel
+	private Date d; //changed D to d - Amel
+	private loanState state; //changed LOAN_STATE to loanState - Amel
 
 	
 	public loan(int loanId, book book, member member, Date dueDate) {
-		this.ID = loanId;
-		this.B = book;
-		this.M = member;
-		this.D = dueDate;
-		this.state = LOAN_STATE.CURRENT;
+		this.id = loanId; //changed ID to id - Amel
+		this.b = book; //changed B to b - Amel
+		this.m = member; //changed M to m - Amel
+		this.d = dueDate; //changed D to d - Amel
+		this.state = loanState.CURRENT; //changed LOAN_STATE to loanState - Amel
 	}
 
 	
 	public void checkOverDue() {
-		if (state == LOAN_STATE.CURRENT &&
+		if (state == loanState.CURRENT && //changed LOAN_STATE to loanState - Amel
 			Calendar.INSTANCE().Date().after(D)) {
-			this.state = LOAN_STATE.OVER_DUE;			
+			this.state = loanState.OVER_DUE;	 //changed LOAN_STATE to loanState - Amel		
 		}
 	}
 
 	
-	public boolean OVer_Due() {
-		return state == LOAN_STATE.OVER_DUE;
+	public boolean Over_Due() { //Changed OVer_Due to Over_due - pavan
+		return state == loanState.OVER_DUE; //changed LOAN_STATE to loanState - Amel
 	}
 
 	
-	public Integer ID() {
-		return ID;
+	public Integer id() { //changed ID to id - Amel
+		return id; //changed ID to id - Amel
 	}
 
 
-	public Date Get_Due_Date() {
-		return D;
+	public Date getDueDate() { //changed Get_Due_Date to getDueDate - Amel
+		return D; //changed D to d - Amel
 	}
 	
 	
@@ -51,7 +51,7 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
+		  .append("  Borrower ").append(M.Get_ID()).append(" : ")//changed GeT to Get-Pavan
 		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
 		  .append("  Book ").append(B.ID()).append(" : " )
 		  .append(B.TITLE()).append("\n")
@@ -61,18 +61,18 @@ public class loan implements Serializable {
 	}
 
 
-	public member Member() {
-		return M;
+	public member member() { //changed Member to member - Amel
+		return m; //changed M to m - Amel
 	}
 
 
-	public book Book() {
-		return B;
+	public book Book() { //changed Book to book - Amel
+		return b; //changed B to b - Amel
 	}
 
 
-	public void DiScHaRgE() {
-		state = LOAN_STATE.DISCHARGED;		
+	public void Discharge() { //changed DiScHaRgE to Discharge-Pavan
+		state = loanState.DISCHARGED;	 //changed LOAN_STATE to loanState - Amel	
 	}
 
 }
